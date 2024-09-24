@@ -59,7 +59,7 @@ fs.readFile("test_case2.json", "utf8", (err, data) => {
   console.log("c (Gauss Elimination) =", cGauss);
 });
 
-// Lagrange interpolation (using decimal.js)
+// Lagrange interpolation
 function lagrangeInterpolation(points, k) {
   let result = new Decimal(0);
 
@@ -78,7 +78,7 @@ function lagrangeInterpolation(points, k) {
   return result;
 }
 
-// Matrix method (using decimal.js and a simple Gaussian elimination-based solver)
+// Matrix method (Simple Gaussian elimination-based solver)
 function matrixMethod(points, k) {
   const m = k - 1;
   const A = [];
@@ -121,7 +121,7 @@ function matrixMethod(points, k) {
   return x[m];
 }
 
-// Gauss elimination (using decimal.js)
+// Gauss elimination
 function gaussElimination(points, k) {
   const m = k - 1;
   const A = [];
