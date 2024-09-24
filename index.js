@@ -1,14 +1,13 @@
 const fs = require("fs");
 
 // Read test case from JSON
-fs.readFile("test_case.json", "utf8", (err, data) => {
+fs.readFile("test_case1.json", "utf8", (err, data) => {
   if (err) {
     console.error("Error reading file:", err);
     return;
   }
 
   const testCase = JSON.parse(data);
-
   // Decode Y values
   const points = Object.entries(testCase)
     .filter(([key]) => !isNaN(key))
@@ -22,9 +21,35 @@ fs.readFile("test_case.json", "utf8", (err, data) => {
   const cc = gaussElimination(points, testCase.keys.k);
   const ccc = matrixMethod(points, testCase.keys.k);
 
-  console.log("c (lagrange_method)=", c);
-  console.log("c (gauss_elim)", cc);
-  console.log("c (matrix_method)", ccc);
+  console.log("test_case1 (lagrange_method)=", c);
+  console.log("test_case1 (gauss_elim)=", cc);
+  console.log("test_case1 (matrix_method)=", ccc);
+});
+
+// testcase 2
+fs.readFile("test_case2.json", "utf8", (err, data) => {
+  if (err) {
+    console.error("Error reading file:", err);
+    return;
+  }
+
+  const testCase = JSON.parse(data);
+  // Decode Y values
+  const points = Object.entries(testCase)
+    .filter(([key]) => !isNaN(key))
+    .map(([x, point]) => [
+      parseInt(x),
+      parseInt(point.value, parseInt(point.base)),
+    ]);
+
+  // Find secret 'c'
+  const c = lagrangeInterpolation(points, testCase.keys.k);
+  const cc = gaussElimination(points, testCase.keys.k);
+  const ccc = matrixMethod(points, testCase.keys.k);
+
+  console.log("test_case2 (lagrange_method)=", c);
+  console.log("test_case2 (gauss_elim)=", cc);
+  console.log("test_case2 (matrix_method)=", ccc);
 });
 
 // Lagrange interpolation
