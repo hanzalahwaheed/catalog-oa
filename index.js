@@ -29,7 +29,7 @@ fs.readFile("test_case1.json", "utf8", (err, data) => {
   console.log("c (Gauss Elimination) =", cGauss);
 });
 
-// Read test case from JSON
+// test_case2
 fs.readFile("test_case2.json", "utf8", (err, data) => {
   if (err) {
     console.error("Error reading file:", err);
